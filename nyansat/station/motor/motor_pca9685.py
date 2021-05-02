@@ -1,8 +1,12 @@
 import _thread
 import math
 
-import machine
-import pca9685
+try:
+    import machine
+    import pca9685
+except ModuleNotFoundError:
+    from raspberrypi import machine, pca9685
+
 
 from motor.motor import MotorController
 
