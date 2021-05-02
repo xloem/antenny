@@ -1,8 +1,21 @@
 import threading
 import time
-import board
 
-I2C = board.I2C()
+import board
+import busio
+
+class Pin:
+    IN = 'in'
+    OUT = 'out'
+    PULL_UP = 'up'
+    PULL_DOWN = 'down'
+    def __init__(self, pin, direction, pull):
+        self.pin = pin
+        self.direction = direction
+        self.pull = pull
+
+def I2C(unk=0, scl=Pin(board.SCL), sda=Pin(board.SDA), freq=None):
+    return busio.I2C(scl.pin, sda.pin)
 
 class Timer:
     PERIODIC = 'periodic'
