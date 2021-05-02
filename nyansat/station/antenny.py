@@ -321,15 +321,12 @@ def mock_antenna_api_factory(
     return api
 
 
-def esp32_antenna_api_factory():
+def esp32_antenna_api_factory(config = ConfigRepository(), safe_mode = False):
     """
     Create a new AntennyAPI object.
     """
     from imu.imu_bno055 import Bno055ImuController
     from motor.motor_pca9685 import Pca9685Controller
-
-    config = ConfigRepository()
-    safe_mode = False
 
     i2c_bno_scl = config.get("i2c_bno_scl")
     i2c_bno_sda = config.get("i2c_bno_sda")
