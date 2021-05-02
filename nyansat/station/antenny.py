@@ -1,9 +1,13 @@
 import logging
-import machine
+try:
+    import machine
+    from gps.gps_basic import BasicGPSController
+except ModuleNotFoundError:
+    import raspberrypi.machine as machine
+    from raspberrypi.machine import Pin
 import _thread
 
 from config.config import ConfigRepository
-from gps.gps_basic import BasicGPSController
 from gps.mock_gps_controller import MockGPSController
 from imu.imu import ImuController
 
@@ -321,9 +325,6 @@ def esp32_antenna_api_factory():
     """
     Create a new AntennyAPI object.
     """
-    import machine
-    from machine import Pin
-
     from imu.imu_bno055 import Bno055ImuController
     from motor.motor_pca9685 import Pca9685Controller
 
